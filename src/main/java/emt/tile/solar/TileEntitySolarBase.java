@@ -162,9 +162,7 @@ public class TileEntitySolarBase extends TileEntityEMT implements IInventory, IW
             case AQUA: {
                 if (worldObj.isThundering()) return 6F;
                 else if (worldObj.isRaining()) return 3F;
-                else if (!worldObj.isThundering() && !worldObj.isRaining()
-                        && worldObj.getBlock(xCoord, yCoord + 1, zCoord).equals(Blocks.water))
-                    return 2F;
+                else if (worldObj.getBlock(xCoord, yCoord + 1, zCoord).equals(Blocks.water)) return 2F;
                 else return 1F;
             }
             case IGNIS: {
@@ -193,7 +191,7 @@ public class TileEntitySolarBase extends TileEntityEMT implements IInventory, IW
                     this.isActive = true;
                     if (side) {
                         this.generating = output * calc_multi();
-                        this.energySource.addEnergy(this.output * calc_multi());
+                        this.energySource.addEnergy(this.generating);
                     }
                 } else {
                     isActive = false;
