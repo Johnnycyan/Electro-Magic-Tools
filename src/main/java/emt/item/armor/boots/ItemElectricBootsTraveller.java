@@ -46,7 +46,7 @@ public class ItemElectricBootsTraveller extends ItemArmor
     public int visDiscount = 2;
     public float speedBonus = 0.055F;
     // constant from Thaumcraft's EventHandlerEntity#playerJumps for basic Traveller Boots
-    public static final BASE_JUMP_BONUS = 0.2750000059604645F;
+    public static final float BASE_JUMP_BONUS = 0.2750000059604645F;
     public float jumpBonus = BASE_JUMP_BONUS;
     public double transferLimit = 100;
 
