@@ -46,7 +46,8 @@ public class ItemElectricBootsTraveller extends ItemArmor
     public int visDiscount = 2;
     public float speedBonus = 0.055F;
     // constant from Thaumcraft's EventHandlerEntity#playerJumps for basic Traveller Boots
-    public float jumpBonus = 0.2750000059604645F;
+    public static final BASE_JUMP_BONUS = 0.2750000059604645F
+    public float jumpBonus = BASE_JUMP_BONUS;
     public double transferLimit = 100;
 
     public ItemElectricBootsTraveller(ArmorMaterial material, int par3, int par4) {
@@ -165,16 +166,10 @@ public class ItemElectricBootsTraveller extends ItemArmor
             } else if (Hover.getHover(player.getEntityId())) {
                 // Base ItemBootsTraveller jumpBonus equals to jumpBonus of Electric Boots,
                 // so any other boots factor can be calculated via proportion method
-                player.jumpMovementFactor = 0.03F
-                        / ((ItemElectricBootsTraveller) EMTItems.electricBootsTraveller).jumpBonus
-                        * jumpBonus
-                        * speedMod;
+                player.jumpMovementFactor = (0.03F / BASE_JUMP_BONUS * jumpBonus - 0.02F) * speedMod + 0.02F;
             } else {
-                player.jumpMovementFactor = 0.05F
-                        / ((ItemElectricBootsTraveller) EMTItems.electricBootsTraveller).jumpBonus
-                        * jumpBonus
-                        * speedMod;
-            }
+                player.jumpMovementFactor = (0.05F / BASE_JUMP_BONUS * jumpBonus - 0.02F) * speedMod + 0.02F;
+           }
         }
     }
 
