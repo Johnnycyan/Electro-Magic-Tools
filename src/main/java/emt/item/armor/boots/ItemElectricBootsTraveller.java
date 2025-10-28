@@ -169,7 +169,7 @@ public class ItemElectricBootsTraveller extends ItemArmor
                 player.jumpMovementFactor = (0.03F / BASE_JUMP_BONUS * jumpBonus - 0.02F) * speedMod + 0.02F;
             } else {
                 player.jumpMovementFactor = (0.05F / BASE_JUMP_BONUS * jumpBonus - 0.02F) * speedMod + 0.02F;
-           }
+            }
         }
     }
 
