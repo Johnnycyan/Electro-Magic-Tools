@@ -35,6 +35,7 @@ import thaumcraft.api.aspects.Aspect;
 import thaumcraft.common.Thaumcraft;
 import thaumcraft.common.items.armor.Hover;
 import thaumicboots.api.IBoots;
+import thaumicboots.mixins.early.minecraft.EntityLivingBaseAccessor;
 
 @Interface(iface = "thaumicboots.api.IBoots", modid = "thaumicboots")
 public class ItemElectricBootsTraveller extends ItemArmor
@@ -177,8 +178,15 @@ public class ItemElectricBootsTraveller extends ItemArmor
         if (player.moveForward != 0.0) {
             player.moveFlying(0.0F, player.moveForward, bonus);
         }
-        if (player.moveStrafing != 0.0 && getOmniState(itemStack)) {
-            player.moveFlying(player.moveStrafing, 0.0F, bonus);
+        if (getOmniState(itemStack)) {
+            if (player.moveStrafing != 0.0) player.moveFlying(player.moveStrafing, 0.0F, bonus);
+            boolean jumping = ((EntityLivingBaseAccessor) player).getIsJumping();
+            boolean sneaking = player.isSneaking();
+            if (sneaking && !jumping && !player.onGround) {
+                player.motionY -= bonus;
+            } else if (jumping && !sneaking) {
+                player.motionY += bonus;
+            }
         }
     }
 
