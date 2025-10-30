@@ -18,6 +18,7 @@ import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import emt.EMT;
+import emt.util.EMTTextHelper;
 import emt.util.EMTConfigHandler;
 import gregtech.api.hazards.Hazard;
 import gregtech.api.hazards.IHazardProtector;
@@ -140,6 +141,7 @@ public class ItemNanoWing extends ItemThaumiumReinforcedWing
     @Override
     public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List<String> list, boolean par4) {
         list.add(StatCollector.translateToLocal("ic2.item.tooltip.PowerTier") + " " + getTier(new ItemStack(this)));
+        list.add(EMTTextHelper.PURPLE + EMTTextHelper.localize("tooltip.EMT.visDiscount") + ": " + visDiscount + "%");
     }
 
     public double getDamageAbsorptionRatio() {
