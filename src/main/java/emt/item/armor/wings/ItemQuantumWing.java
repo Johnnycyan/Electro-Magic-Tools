@@ -9,6 +9,9 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import emt.EMT;
+import emt.util.EMTTextHelper;
+import thaumcraft.api.IVisDiscountGear;
+import thaumcraft.api.aspects.Aspect;
 
 public class ItemQuantumWing extends ItemNanoWing {
 
@@ -30,6 +33,11 @@ public class ItemQuantumWing extends ItemNanoWing {
         return 0.0F;
     }
 
+    @Override
+    public int getVisDiscount(ItemStack stack, EntityPlayer player, Aspect aspect) {
+        return visDiscount;
+    }
+
     @SideOnly(Side.CLIENT)
     @Override
     public void registerIcons(IIconRegister iconRegister) {
@@ -40,6 +48,11 @@ public class ItemQuantumWing extends ItemNanoWing {
     @SideOnly(Side.CLIENT)
     public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
         return EMT.RESOURCE_PATH + ":textures/models/quantumwing.png";
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer par2EntityPlayer, List<String> list, boolean par4) {
+        list.add(EMTTextHelper.PURPLE + EMTTextHelper.localize("tooltip.EMT.visDiscount") + ": " + visDiscount + "%");
     }
 
     @Override
